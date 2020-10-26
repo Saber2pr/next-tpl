@@ -13,6 +13,7 @@ const config = {
   lessLoaderOptions: {
     javascriptEnabled: true,
     importLoaders: 1,
+    // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
     modifyVars: {
       'primary-color': '#673ae2',
       'border-color-base': '#673ae27a',

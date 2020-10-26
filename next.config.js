@@ -13,6 +13,11 @@ const config = {
   lessLoaderOptions: {
     javascriptEnabled: true,
     importLoaders: 1,
+    modifyVars: {
+      'primary-color': '#673ae2',
+      'border-color-base': '#673ae27a',
+      'box-shadow-base': '0 0 0 2px rgba(230, 130, 255, 0.2)',
+    },
   },
   webpack: config => {
     config.plugins.push(

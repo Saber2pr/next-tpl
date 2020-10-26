@@ -1,0 +1,17 @@
+# node
+node_modules/
+
+# config
+.vscode/
+.next
+
+# build
+build/
+lib/
+public/
+
+# package
+yarn-error.log
+
+# static/
+/static

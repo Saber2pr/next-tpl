@@ -1,23 +1,27 @@
 import { GetServerSidePropsResult } from 'next'
-import axios from 'axios'
 
 import createAxiosMonad from '@saber2pr/next-with-axios'
 
-/**
- * 服务端页面初始化请求，request:root
- */
+import { createRequestRoot } from '../api'
+import { createError } from '../utils'
+import { KEYS } from '../utils/constants'
+import { withRedirect } from './withRedirect'
+
 export const AxiosMonad = createAxiosMonad(async (handler, ctx) => {
+  const reqHeaders = ctx?.req?.headers
+  const requestRoot = createRequestRoot(reqHeaders)
+
   const result: GetServerSidePropsResult<any> = {
     props: {},
   }
 
   try {
-    result.props = await handler(axios, ctx)
+    result.props = await handler(requestRoot, ctx)
   } catch (error) {
-    result.props = error
+    result.props[KEYS.error] = createError(error)
   } finally {
     return result
   }
 })
 
-export const withAxios = AxiosMonad
+export const withAxios = withRedirect(AxiosMonad)

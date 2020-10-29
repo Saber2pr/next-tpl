@@ -1,7 +1,3 @@
-export type IState = Readonly<{
-  data: Array<{ id: number; value: number }>
-}>
+export type IState = Readonly<{}>
 
-export const initState: IState = {
-  data: [],
-}
+export const initState: IState = {}

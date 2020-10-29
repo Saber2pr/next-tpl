@@ -1,13 +1,16 @@
 # next-tpl
 
-1. 需要实现 requestRoot，baseUrl 设置为后端地址。
+开箱即用的 nextjs 模板，集成 antd 按需加载、集成 axios 接口、集成 react-redux、集成 docker。
 
-需要替换这里的 axios
+# docker
 
-> plugin/withAxios
+```bash
+# 发布
+sh /home/saber2pr/next-tpl/scripts/publish.sh testing
 
-> pages/api
+# 运行指定镜像
+sh /home/saber2pr/next-tpl/scripts/run.sh <tag>
 
-2. 需要实现 requestApi，baseUrl 设置为前端 next 地址 /api
-
-在 withPage 里用，即 ajax 时用 requestApi
+# 打包镜像
+sh /home/saber2pr/next-tpl/scripts/build.sh testing
+```

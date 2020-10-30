@@ -1,0 +1,48 @@
+.MainHeader {
+  &-Nav {
+    padding-left: 50px;
+    flex-grow: 1;
+    .NavList {
+      height: 100%;
+      &-Item {
+        height: 100%;
+        &:nth-child(n + 2) {
+          margin-left: 40px;
+        }
+        &:hover {
+          .NavList-Item-Anchor {
+            color: #0084ff;
+          }
+        }
+        &.active {
+          .NavList-Item-Anchor {
+            color: #0084ff;
+            &::after {
+              position: absolute;
+              content: '';
+              display: block;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 48px;
+              height: 4px;
+              background: #0084ff;
+            }
+          }
+        }
+        &-Anchor {
+          position: relative;
+          display: block;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 22px;
+          color: #000000;
+          width: 70px;
+          height: 64px;
+          line-height: 64px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

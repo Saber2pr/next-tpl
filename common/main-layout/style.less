@@ -1,0 +1,42 @@
+.MainLayout {
+  @header-height: 64px;
+  @content-width: 1280px;
+
+  &-Header {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    min-width: @content-width;
+    height: @header-height;
+
+    background: #ffffff;
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.04);
+
+    .MainHeader {
+      width: @content-width;
+      margin: 0 auto;
+
+      background: #e5e5e5;
+    }
+  }
+  &-Main {
+    padding-top: @header-height;
+    min-width: @content-width;
+    .MainContent {
+      background: #e5e5e5;
+      margin: 0 auto;
+      width: @content-width;
+      min-height: 70vh;
+    }
+  }
+  &-Footer {
+    min-width: @content-width;
+    .MainFooter {
+      background: #000000;
+      width: @content-width;
+      margin: 0 auto;
+    }
+  }
+}

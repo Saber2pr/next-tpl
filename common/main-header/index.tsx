@@ -47,6 +47,9 @@ export const MainHeader = ({}: MainHeader) => {
           })}
         </ul>
       </nav>
+      <div className="MainHeader-Right flex align-items-center">
+        <div className="MainHeader-User"></div>
+      </div>
     </div>
   )
 }

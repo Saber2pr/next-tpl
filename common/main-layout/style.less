@@ -1,42 +1,54 @@
-.MainLayout {
-  @header-height: 64px;
-  @content-width: 1280px;
+@main-header-height: 64px;
+@main-content-width: 1280px;
 
+.MainLayout {
   &-Header {
     position: fixed;
     top: 0;
     left: 0;
 
     width: 100%;
-    min-width: @content-width;
-    height: @header-height;
+    min-width: @main-content-width;
+    height: @main-header-height;
 
     background: #ffffff;
     box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.04);
 
     .MainHeader {
-      width: @content-width;
+      width: @main-content-width;
       margin: 0 auto;
-
-      background: #e5e5e5;
     }
   }
   &-Main {
-    padding-top: @header-height;
-    min-width: @content-width;
+    padding-top: @main-header-height;
+    min-width: @main-content-width;
     .MainContent {
       background: #e5e5e5;
       margin: 0 auto;
-      width: @content-width;
+      width: @main-content-width;
       min-height: 70vh;
     }
   }
   &-Footer {
-    min-width: @content-width;
+    min-width: @main-content-width;
+    background: #000000;
     .MainFooter {
-      background: #000000;
-      width: @content-width;
+      width: @main-content-width;
+      background: rgb(19, 19, 19);
       margin: 0 auto;
+    }
+  }
+}
+
+@media screen and (max-width: @main-content-width) {
+  .MainLayout {
+    &-Header {
+      min-width: 760px;
+      .MainHeader {
+        width: auto;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
     }
   }
 }

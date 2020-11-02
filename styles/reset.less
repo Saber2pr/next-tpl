@@ -3,3 +3,16 @@ ul {
   padding: 0;
   list-style-type: none;
 }
+
+#nprogress {
+  @color: #0084ff;
+  // .spinner {
+  //   display: none;
+  // }
+  .bar {
+    background: @color;
+    .peg {
+      box-shadow: 0 0 10px @color, 0 0 5px @color;
+    }
+  }
+}

@@ -1,5 +1,6 @@
-import React from 'react'
 import './style.less'
+
+import React from 'react'
 
 export interface MainFooter {}
 

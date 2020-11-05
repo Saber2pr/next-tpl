@@ -1,10 +1,11 @@
 import './style.less'
 
 import classnames from 'classnames'
-import React, { ReactNode } from 'react'
-import { MainHeader } from '../main-header'
-import { MainFooter } from '../main-footer'
 import Head from 'next/head'
+import React, { ReactNode } from 'react'
+
+import { MainFooter } from '../main-footer'
+import { MainHeader } from '../main-header'
 
 export interface MainLayout {
   rootClassName?: string

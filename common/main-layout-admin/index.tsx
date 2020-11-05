@@ -10,6 +10,7 @@ import { CloudUploadOutlined } from '@ant-design/icons'
 
 import { Link } from '../../components'
 import { pushGoTop } from '../../utils/goTop'
+import { useRouter } from 'next/router'
 
 const { Sider, Content, Header } = Layout
 const SIDER_WIDTH = 260
@@ -21,26 +22,27 @@ export interface MainLayoutAdmin {
   title?: string
 }
 
-type Links = {
+type Menus = {
   name: string
   href?: string
   icon: React.ReactNode
-  children?: Omit<Links[0], 'children'>[]
+  children?: Omit<Menus[0], 'children'>[]
 }[]
 
-const Links: Links = [
+const Menus: Menus = [
   {
     name: '上传服务1',
     icon: <CloudUploadOutlined />,
+    href: '/upload',
     children: [
       {
         name: '文件上传11',
-        href: '/paras',
+        href: '/upload/paras1',
         icon: <CloudUploadOutlined />,
       },
       {
         name: '文件上传12',
-        href: '/paras',
+        href: '/upload/paras2',
         icon: <CloudUploadOutlined />,
       },
     ],
@@ -48,15 +50,16 @@ const Links: Links = [
   {
     name: '上传服务2',
     icon: <CloudUploadOutlined />,
+    href: '/upload2',
     children: [
       {
-        name: '文件上传21',
-        href: '/paras',
+        name: '文件上传',
+        href: '/upload2/paras1',
         icon: <CloudUploadOutlined />,
       },
       {
-        name: '文件上传22',
-        href: '/paras',
+        name: '文件上传',
+        href: '/upload2/paras2',
         icon: <CloudUploadOutlined />,
       },
     ],
@@ -69,6 +72,7 @@ export const MainLayoutAdmin = ({
   rootClassName,
   title = '标题',
 }: MainLayoutAdmin) => {
+  const router = useRouter()
   return (
     <Layout className={classnames('MainLayoutAdmin', rootClassName)}>
       <Head>
@@ -89,14 +93,19 @@ export const MainLayoutAdmin = ({
         <Link className="MainLayoutAdmin-Sider-Logo" href="/">
           Admin
         </Link>
-        <Menu theme="dark" mode="inline">
-          {Links.map(({ name, href, icon, children }) => {
+        <Menu
+          theme="dark"
+          mode="inline"
+          defaultOpenKeys={Menus.map(item => item?.href)}
+          defaultSelectedKeys={[router.pathname]}
+        >
+          {Menus.map(({ name, href, icon, children }) => {
             if (children) {
               return (
-                <SubMenu key={name} title={name} icon={icon}>
+                <SubMenu key={href} title={name} icon={icon}>
                   {children.map(({ name, href, icon }) => (
                     <Menu.Item
-                      key={name}
+                      key={href}
                       icon={icon}
                       onClick={() => pushGoTop(href)}
                     >
@@ -107,7 +116,7 @@ export const MainLayoutAdmin = ({
               )
             }
             return (
-              <Menu.Item key={name} icon={icon} onClick={() => pushGoTop(href)}>
+              <Menu.Item key={href} icon={icon} onClick={() => pushGoTop(href)}>
                 {name}
               </Menu.Item>
             )

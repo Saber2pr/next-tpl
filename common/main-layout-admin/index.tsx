@@ -12,6 +12,7 @@ import { Link } from '../../components'
 import { pushGoTop } from '../../utils/goTop'
 
 const { Sider, Content, Header } = Layout
+const SIDER_WIDTH = 260
 
 export interface MainLayoutAdmin {
   children: React.ReactNode
@@ -75,7 +76,7 @@ export const MainLayoutAdmin = ({
       </Head>
       <Sider
         className="MainLayoutAdmin-Sider"
-        width={260}
+        width={SIDER_WIDTH}
         trigger={null}
         collapsible={false}
         style={{
@@ -113,7 +114,10 @@ export const MainLayoutAdmin = ({
           })}
         </Menu>
       </Sider>
-      <Layout className="MainLayoutAdmin-Main" style={{ paddingLeft: 260 }}>
+      <Layout
+        className="MainLayoutAdmin-Main"
+        style={{ paddingLeft: SIDER_WIDTH }}
+      >
         <Header className="MainLayoutAdmin-Main-Header">{title}</Header>
         <Content
           className={classnames('MainLayoutAdmin-Main-Content', className)}

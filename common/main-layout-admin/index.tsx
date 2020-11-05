@@ -67,7 +67,7 @@ export const MainLayoutAdmin = ({
   children,
   className,
   rootClassName,
-  title,
+  title = '标题',
 }: MainLayoutAdmin) => {
   return (
     <Layout className={classnames('MainLayoutAdmin', rootClassName)}>

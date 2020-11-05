@@ -52,10 +52,11 @@ if (ApiConfig.changeOrigin && (isDev() || isTest())) {
 }
 const requestApi = axios.create(requestApiConfig)
 
-// 开始计算请求时间
-requestApi.interceptors.request.use(calcRequestTimeStart)
 // api version
 requestApi.interceptors.request.use(extendVersion)
+// 开始计算请求时间
+requestApi.interceptors.request.use(calcRequestTimeStart)
+
 // 结束计算请求时间
 requestApi.interceptors.response.use(calcRequestTimeEnd)
 // 打印返回值信息
@@ -81,12 +82,12 @@ const createRequestRoot = (headers?: OutgoingHttpHeaders) => {
     headers,
   })
 
-  // 开始计算请求时间
-  requestRoot.interceptors.request.use(calcRequestTimeStart)
   // 转发到target前，去除^/api前缀
   requestRoot.interceptors.request.use(rewriteApiUrl)
   // api version
   requestRoot.interceptors.request.use(extendVersion)
+  // 开始计算请求时间
+  requestRoot.interceptors.request.use(calcRequestTimeStart)
 
   // 结束计算请求时间
   requestRoot.interceptors.response.use(calcRequestTimeEnd)

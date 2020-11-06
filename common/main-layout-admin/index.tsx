@@ -10,6 +10,7 @@ import React from 'react'
 import { Link } from '../../components'
 import { pushGoTop } from '../../utils/goTop'
 import { Menus } from './menus'
+import { useRestoreSiderScroll } from '../../hooks'
 
 const { Sider, Content, Header } = Layout
 const SIDER_WIDTH = 260
@@ -28,6 +29,9 @@ export const MainLayoutAdmin = ({
   title = '标题',
 }: MainLayoutAdmin) => {
   const router = useRouter()
+  const [openKeys, pustOpenKeys] = useRestoreSiderScroll(
+    '.MainLayoutAdmin-Sider'
+  )
   return (
     <Layout className={classnames('MainLayoutAdmin', rootClassName)}>
       <Head>
@@ -51,8 +55,9 @@ export const MainLayoutAdmin = ({
         <Menu
           theme="dark"
           mode="inline"
-          defaultOpenKeys={Menus.map(item => item?.href)}
+          openKeys={openKeys}
           defaultSelectedKeys={[router.pathname]}
+          onOpenChange={keys => pustOpenKeys(keys as string[])}
         >
           {Menus.map(({ name, href, icon, children }) => {
             if (children) {

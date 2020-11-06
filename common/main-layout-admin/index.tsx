@@ -1,16 +1,15 @@
 import './style.less'
 
-import { Layout, Menu } from 'antd'
+import { Affix, Layout, Menu } from 'antd'
 import SubMenu from 'antd/lib/menu/SubMenu'
 import classnames from 'classnames'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import React from 'react'
-
-import { CloudUploadOutlined } from '@ant-design/icons'
 
 import { Link } from '../../components'
 import { pushGoTop } from '../../utils/goTop'
-import { useRouter } from 'next/router'
+import { Menus } from './menus'
 
 const { Sider, Content, Header } = Layout
 const SIDER_WIDTH = 260
@@ -21,50 +20,6 @@ export interface MainLayoutAdmin {
   rootClassName?: string
   title?: string
 }
-
-type Menus = {
-  name: string
-  href?: string
-  icon: React.ReactNode
-  children?: Omit<Menus[0], 'children'>[]
-}[]
-
-const Menus: Menus = [
-  {
-    name: '上传服务1',
-    icon: <CloudUploadOutlined />,
-    href: '/upload',
-    children: [
-      {
-        name: '文件上传11',
-        href: '/upload/paras1',
-        icon: <CloudUploadOutlined />,
-      },
-      {
-        name: '文件上传12',
-        href: '/upload/paras2',
-        icon: <CloudUploadOutlined />,
-      },
-    ],
-  },
-  {
-    name: '上传服务2',
-    icon: <CloudUploadOutlined />,
-    href: '/upload2',
-    children: [
-      {
-        name: '文件上传',
-        href: '/upload2/paras1',
-        icon: <CloudUploadOutlined />,
-      },
-      {
-        name: '文件上传',
-        href: '/upload2/paras2',
-        icon: <CloudUploadOutlined />,
-      },
-    ],
-  },
-]
 
 export const MainLayoutAdmin = ({
   children,
@@ -127,7 +82,9 @@ export const MainLayoutAdmin = ({
         className="MainLayoutAdmin-Main"
         style={{ paddingLeft: SIDER_WIDTH }}
       >
-        <Header className="MainLayoutAdmin-Main-Header">{title}</Header>
+        <Affix>
+          <Header className="MainLayoutAdmin-Main-Header">{title}</Header>
+        </Affix>
         <Content
           className={classnames('MainLayoutAdmin-Main-Content', className)}
         >

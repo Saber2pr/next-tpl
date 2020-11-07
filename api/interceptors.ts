@@ -1,6 +1,6 @@
 import { getHost } from '../utils'
 import { KEYS } from '../utils/constants'
-import { createError } from '../utils/createError'
+import { createError, unWrapError } from '../utils/createError'
 import { toQueryStr } from '../utils/toQueryStr'
 import { ApiConfig } from './apiConfig'
 import { getMetadata, rewriteUrl, setMetadata } from './utils'
@@ -47,6 +47,17 @@ export const printResUrlTime: ResOnFulfilledInterceptor = res => {
 export const printResData: ResOnFulfilledInterceptor = res => {
   if (ApiConfig.log) {
     console.log(res)
+  }
+  return res
+}
+
+/**
+ * 客户端重新抛出被服务端吞掉的错误
+ */
+export const reThrowError: ResOnFulfilledInterceptor = res => {
+  const error = unWrapError(res?.data)
+  if (error) {
+    return Promise.reject(error)
   }
   return res
 }

@@ -9,6 +9,7 @@ import {
   handleError,
   printResData,
   printResUrlTime,
+  reThrowError,
   rewriteApiUrl,
 } from './interceptors'
 import { isDev, isTest } from './utils'
@@ -59,10 +60,12 @@ requestApi.interceptors.request.use(calcRequestTimeStart)
 
 // 结束计算请求时间
 requestApi.interceptors.response.use(calcRequestTimeEnd)
-// 打印返回值信息
-requestApi.interceptors.response.use(printResData)
 // 打印请求url
 requestApi.interceptors.response.use(printResUrlTime)
+// 打印返回值信息
+requestApi.interceptors.response.use(printResData)
+// 抛出被服务端吞掉的错误
+requestApi.interceptors.response.use(reThrowError)
 
 /**
  * 工厂函数

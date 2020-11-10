@@ -11,6 +11,7 @@ import {
   printResUrlTime,
   reThrowError,
   rewriteApiUrl,
+  setClientErrorMessage,
 } from './interceptors'
 import { isDev, isTest } from './utils'
 
@@ -64,6 +65,7 @@ requestApi.interceptors.response.use(calcRequestTimeEnd)
 requestApi.interceptors.response.use(printResUrlTime)
 // 打印返回值信息
 requestApi.interceptors.response.use(printResData)
+requestApi.interceptors.response.use(setClientErrorMessage)
 // 抛出被服务端吞掉的错误
 requestApi.interceptors.response.use(reThrowError)
 

@@ -1,6 +1,9 @@
+import { ApiError } from 'next/dist/next-server/server/api-utils'
+
 import { getHost } from '../utils'
 import { KEYS } from '../utils/constants'
 import { createError, unWrapError } from '../utils/createError'
+import { Messager } from '../utils/message'
 import { toQueryStr } from '../utils/toQueryStr'
 import { ApiConfig } from './apiConfig'
 import { getMetadata, rewriteUrl, setMetadata } from './utils'
@@ -9,7 +12,6 @@ import type {
   ReqOnFulfilledInterceptor,
   ResOnFulfilledInterceptor,
 } from './type'
-
 /**
  * 输出调试信息
  */
@@ -68,6 +70,20 @@ export const reThrowError: ResOnFulfilledInterceptor = res => {
 export const rewriteApiUrl: ReqOnFulfilledInterceptor = req => {
   req.url = rewriteUrl(req.url, ApiConfig.proxyApi)
   return req
+}
+
+/**
+ * 客户端报错提示
+ */
+export const setClientErrorMessage: ResOnFulfilledInterceptor = res => {
+  const error: ApiError = res.data[KEYS.error]
+  if (error) {
+    if (ApiConfig.log) {
+      // 输出错误信息
+      Messager.error(error)
+    }
+  }
+  return res
 }
 
 /**

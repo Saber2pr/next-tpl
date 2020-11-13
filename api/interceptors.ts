@@ -35,7 +35,7 @@ export const printResUrlTime: ResOnFulfilledInterceptor = res => {
       }
 
       const duration = getMetadata(res, 'duration')
-      let optionalParams = [reqUrl]
+      let optionalParams = [decodeURIComponent(reqUrl)]
       if (duration) {
         optionalParams = optionalParams.concat(`[duration]: ${duration}ms`)
         setMetadata(res.data, 'duration', duration)

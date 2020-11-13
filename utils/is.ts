@@ -36,3 +36,5 @@ export const isJSON = (str: string) => {
     return false
   }
 }
+
+export const compareId = (a: string | number, b: string | number) => a == b

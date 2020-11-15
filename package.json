@@ -13,6 +13,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
     "@saber2pr/next-with-axios": "^0.0.6",
+    "@saber2pr/ptbk": "^0.0.4",
     "@types/classnames": "^2.2.11",
     "@types/cookie": "^0.4.0",
     "@types/moment": "^2.13.0",

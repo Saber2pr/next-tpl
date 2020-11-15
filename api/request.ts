@@ -5,6 +5,7 @@ import { ApiConfig } from './apiConfig'
 import {
   calcRequestTimeEnd,
   calcRequestTimeStart,
+  decodeApiPtbk,
   extendVersion,
   handleError,
   printResData,
@@ -59,6 +60,7 @@ requestApi.interceptors.request.use(extendVersion)
 // 开始计算请求时间
 requestApi.interceptors.request.use(calcRequestTimeStart)
 
+requestApi.interceptors.response.use(decodeApiPtbk)
 // 结束计算请求时间
 requestApi.interceptors.response.use(calcRequestTimeEnd)
 // 打印请求url

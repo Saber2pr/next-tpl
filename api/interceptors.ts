@@ -12,6 +12,7 @@ import type {
   ReqOnFulfilledInterceptor,
   ResOnFulfilledInterceptor,
 } from './type'
+import { ptbk } from '../utils/ptbk'
 /**
  * 输出调试信息
  */
@@ -147,4 +148,15 @@ export const extendVersion: ReqOnFulfilledInterceptor = req => {
     }
   }
   return req
+}
+
+export const decodeApiPtbk: ResOnFulfilledInterceptor = res => {
+  if (res?.data?.ptbk) {
+    try {
+      res.data = ptbk.decode(res?.data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+  return res
 }

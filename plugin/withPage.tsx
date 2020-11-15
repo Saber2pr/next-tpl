@@ -2,12 +2,14 @@ import { useEffect } from 'react'
 
 import { ApiConfig } from '../api'
 import { deepGet, KEYS, Messager } from '../utils'
+import { ptbk } from '../utils/ptbk'
 
 /**
  * 拦截所有页面的props
  */
 export function withPage<T>(Component: React.FC<T>): React.FC<T> {
   return props => {
+    props = ptbk.decode(props as any)
     useEffect(() => {
       if (ApiConfig.log) {
         console.log(props)

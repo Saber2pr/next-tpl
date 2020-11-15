@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { createRequestRoot, getOrigin } from '../../api'
 import { createError } from '../../utils'
 import { KEYS } from '../../utils/constants'
+import { ptbk } from '../../utils/ptbk'
 
 export const config = {
   api: {
@@ -31,7 +32,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       'Access-Control-Allow-Origin': getOrigin(),
     })
 
-    res.end(JSON.stringify(data))
+    const result = ptbk.encode(data)
+    res.end(JSON.stringify(result))
   } catch (error) {
     res.end(JSON.stringify({ [KEYS.error]: createError(error) }))
   }

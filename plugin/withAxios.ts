@@ -6,6 +6,7 @@ import { createRequestRoot } from '../api'
 import { createError } from '../utils'
 import { KEYS } from '../utils/constants'
 import { withRedirect } from './withRedirect'
+import { ptbk } from '../utils/ptbk'
 
 export const AxiosMonad = createAxiosMonad(async (handler, ctx) => {
   const reqHeaders = ctx?.req?.headers
@@ -16,10 +17,12 @@ export const AxiosMonad = createAxiosMonad(async (handler, ctx) => {
   }
 
   try {
+    // 服务端HTTP Exception统一捕获
     result.props = await handler(requestRoot, ctx)
   } catch (error) {
     result.props[KEYS.error] = createError(error)
   } finally {
+    result.props = ptbk.encode(result.props)
     return result
   }
 })

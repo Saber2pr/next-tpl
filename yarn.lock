@@ -1113,10 +1113,10 @@
   resolved "https://registry.yarnpkg.com/@saber2pr/next-with-axios/-/next-with-axios-0.0.6.tgz#65888f38446d3607d19394014449dc540de9721a"
   integrity sha512-jz0DPJaoDxDrBKB3O2HIRg/qRRVVwxlCAVk9HziqeHsB5Tu0RmVOMPpHv8iqiuNN2k0r4XCu6DCpbxBcp7DMKw==
 
-"@saber2pr/ptbk@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@saber2pr/ptbk/-/ptbk-0.0.4.tgz#74346e3f79e42db997fb8f36af15383471a83616"
-  integrity sha512-24+L2btTUKJMW9hfMokfRfHOpYsF+l9CG9G4ejB462GSR4Y5NiskaqMaqqSMkjX1+HJrsHQmFkp5ZmQG9CaBeQ==
+"@saber2pr/ptbk@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@saber2pr/ptbk/-/ptbk-0.0.7.tgz#28aab559951cdcb04d0fab906bd0179a13d532c7"
+  integrity sha512-WtORk+aOgN9306S/DuBAjbsGOsOA3q9wq6jAC+1pTJpJW9YckS96bvAvsKUTjxuiZDwLVOycoXgfaFDliA+1pw==
 
 "@types/classnames@^2.2.11":
   version "2.2.11"

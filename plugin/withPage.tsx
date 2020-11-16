@@ -9,7 +9,10 @@ import { ptbk } from '../utils/ptbk'
  */
 export function withPage<T>(Component: React.FC<T>): React.FC<T> {
   return props => {
-    props = ptbk.decode(props as any)
+    if (ptbk.isPtbk(props)) {
+      props = ptbk.decode(props)
+    }
+
     useEffect(() => {
       if (ApiConfig.log) {
         console.log(props)

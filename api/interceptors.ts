@@ -151,12 +151,8 @@ export const extendVersion: ReqOnFulfilledInterceptor = req => {
 }
 
 export const decodeApiPtbk: ResOnFulfilledInterceptor = res => {
-  if (res?.data?.ptbk) {
-    try {
-      res.data = ptbk.decode(res?.data)
-    } catch (err) {
-      console.error(err)
-    }
+  if (ptbk.isPtbk(res?.data)) {
+    res.data = ptbk.decode(res?.data)
   }
   return res
 }

@@ -131,25 +131,6 @@ export const handleError = (error: any) => {
   }
 }
 
-/**
- * 如果baseUrl设置了/v1，请求时可以带/v2前缀
- * api version control
- */
-const REG_VER = /^\/v(\d)\//
-export const extendVersion: ReqOnFulfilledInterceptor = req => {
-  const url = req?.url
-  if (url && REG_VER.test(url)) {
-    const version = url.match(REG_VER)?.[1]
-    if (version) {
-      if (/\/v\d$/.test(req.baseURL)) {
-        req.baseURL = req.baseURL.replace(/\/v\d$/, `/v${version}`)
-        req.url = url.replace(/^\/v\d\//, '/')
-      }
-    }
-  }
-  return req
-}
-
 export const decodeApiPtbk: ResOnFulfilledInterceptor = res => {
   if (ptbk.isPtbk(res?.data)) {
     res.data = ptbk.decode(res?.data)

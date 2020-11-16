@@ -6,7 +6,6 @@ import {
   calcRequestTimeEnd,
   calcRequestTimeStart,
   decodeApiPtbk,
-  extendVersion,
   handleError,
   printResData,
   printResUrlTime,
@@ -55,8 +54,6 @@ if (ApiConfig.changeOrigin && (isDev() || isTest())) {
 }
 const requestApi = axios.create(requestApiConfig)
 
-// api version
-requestApi.interceptors.request.use(extendVersion)
 // 开始计算请求时间
 requestApi.interceptors.request.use(calcRequestTimeStart)
 
@@ -91,11 +88,10 @@ const createRequestRoot = (headers?: OutgoingHttpHeaders) => {
 
   // 转发到target前，去除^/api前缀
   requestRoot.interceptors.request.use(rewriteApiUrl)
-  // api version
-  requestRoot.interceptors.request.use(extendVersion)
   // 开始计算请求时间
   requestRoot.interceptors.request.use(calcRequestTimeStart)
 
+  requestRoot.interceptors.response.use(decodeApiPtbk)
   // 结束计算请求时间
   requestRoot.interceptors.response.use(calcRequestTimeEnd)
   // 打印请求url， 捕获异常

@@ -57,9 +57,9 @@ const requestApi = axios.create(requestApiConfig)
 // 开始计算请求时间
 requestApi.interceptors.request.use(calcRequestTimeStart)
 
-requestApi.interceptors.response.use(decodeApiPtbk)
 // 结束计算请求时间
 requestApi.interceptors.response.use(calcRequestTimeEnd)
+requestApi.interceptors.response.use(decodeApiPtbk)
 // 打印请求url
 requestApi.interceptors.response.use(printResUrlTime)
 // 打印返回值信息

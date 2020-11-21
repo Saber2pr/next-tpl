@@ -28,7 +28,7 @@ export const ApiConfig = {
   /**
    * 跨域
    */
-  changeOrigin: false,
+  changeOrigin: /domain/.test(apis.target),
   /**
    * node代理
    */

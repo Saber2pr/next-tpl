@@ -28,7 +28,7 @@ export const ApiConfig = {
   /**
    * 跨域
    */
-  changeOrigin: /domain/.test(apis.target),
+  changeOrigin: true,
   /**
    * node代理
    */
@@ -36,7 +36,7 @@ export const ApiConfig = {
   /**
    * origin侧是否为^/api代理
    */
-  useProxyOrigin: false,
+  useProxyOrigin: /xxx\.xxx\.xxx/.test(apis.target),
   /**
    * 接口超时时间
    */

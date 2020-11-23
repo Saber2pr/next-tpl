@@ -34,6 +34,10 @@ export const ApiConfig = {
    */
   proxyApi: '/api',
   /**
+   * origin侧是否为^/api代理
+   */
+  useProxyOrigin: false,
+  /**
    * 接口超时时间
    */
   timeout: 1000 * 60,

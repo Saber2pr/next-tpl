@@ -13,7 +13,6 @@ import {
   rewriteApiUrl,
   setClientErrorMessage,
 } from './interceptors'
-import { isDev, isTest } from './utils'
 
 const JSONbigString = require('json-bigint')({ storeAsString: true })
 
@@ -42,16 +41,6 @@ const requestApiConfig: AxiosRequestConfig = {
   withCredentials: true,
 }
 
-/**
- * 本地开发用到线上接口时需要changeOrigin
- */
-if (ApiConfig.changeOrigin && (isDev() || isTest())) {
-  const headers = requestApiConfig.headers || {}
-  requestApiConfig.headers = {
-    ...headers,
-    host: getHost(ApiConfig.target),
-  }
-}
 const requestApi = axios.create(requestApiConfig)
 
 // 开始计算请求时间
@@ -75,10 +64,12 @@ requestApi.interceptors.response.use(reThrowError)
  */
 const createRequestRoot = (headers?: OutgoingHttpHeaders) => {
   let baseURL = ApiConfig.target
-  if (ApiConfig.changeOrigin && (isDev() || isTest())) {
+  if (ApiConfig.changeOrigin) {
     headers.host = getHost(ApiConfig.target)
     baseURL = baseURL.replace(/\/$/, '')
-    baseURL += ApiConfig.proxyApi
+    if (ApiConfig.useProxyOrigin) {
+      baseURL += ApiConfig.proxyApi
+    }
   }
   const requestRoot = axios.create({
     baseURL,

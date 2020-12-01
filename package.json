@@ -8,7 +8,8 @@
     "dev": "next -p 8080",
     "build": "next build",
     "start": "next start -p 8080",
-    "start:local": "cross-env NODE_ENV=development next start -p 8088"
+    "start:local": "cross-env NODE_ENV=development next start -p 8088",
+    "reset:branch": "sh scripts/reset-branch.sh"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",

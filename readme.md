@@ -62,3 +62,13 @@ sh /home/saber2pr/next-tpl/scripts/build.sh testing
 8. utils/constants
 
 > 配置 token-key 等常量
+
+# 分支管理
+
+1. dev 更改，dev 合并到 testing，testing 发布到测试服测试，测试通过后 testing 合并到 master。
+
+2. 推送 master，测试服测试 master，测试通过后发布 master。
+
+3. master 发布后，执行 yarn reset:branch 重置 dev 和 testing 分支。
+
+> 每当 master 分支发布后，如果 dev 和 testing 落后就需要 reset 重置。

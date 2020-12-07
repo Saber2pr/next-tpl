@@ -89,13 +89,23 @@ sh /home/saber2pr/next-tpl/scripts/build.sh testing
 
 2. 推送 master，测试服测试 master，测试通过后发布 master。
 
-3. master 发布后，执行 yarn reset:branch 重置 dev 和 testing 分支。
+> master 发布后，执行 yarn reset:branch 重置 dev 和 testing 分支。
 
 > 每当 master 分支发布后，如果 dev 和 testing 都已合并且落后就需要 reset 重置。
 
 > 重置后的状态为 master/origin、dev/origin、testing/origin、origin/HEAD 在一个点上
 
 > 分支发布推荐使用 yarn push
+
+### 多人开发
+
+1. 从 testing 分支检出 feat-xxx 分支，开发完成后合并到 testing 分支，testing 分支测试通过后合并到 master 发布。
+
+### 版本管理
+
+1. fix-xxx 分支作为临时 bug 修复，合并到 testing 分支测试通过后可以直接合并到 master 发布
+
+2. feat-xxx 分支作为功能分支，合并到 testing 分支测试通过后，如果需要发布版本，需要当前 HEAD 打上 tag 再合并到 master 发布。
 
 # vscode 必装插件
 

@@ -107,6 +107,8 @@ sh /home/saber2pr/next-tpl/scripts/build.sh testing
 
 2. feat-xxx 分支作为功能分支，合并到 testing 分支测试通过后，如果需要发布版本，需要当前 HEAD 打上 tag 再合并到 master 发布。
 
+> master 和 testing 分支需要保留且只读，其他分支被合并后需要被删除。
+
 # vscode 必装插件
 
 1. 暗色主题：After Dark

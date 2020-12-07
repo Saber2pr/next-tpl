@@ -91,7 +91,7 @@ sh /home/saber2pr/next-tpl/scripts/build.sh testing
 
 3. master 发布后，执行 yarn reset:branch 重置 dev 和 testing 分支。
 
-> 每当 master 分支发布后，如果 dev 和 testing 落后就需要 reset 重置。
+> 每当 master 分支发布后，如果 dev 和 testing 都已合并且落后就需要 reset 重置。
 
 > 重置后的状态为 master/origin、dev/origin、testing/origin、origin/HEAD 在一个点上
 

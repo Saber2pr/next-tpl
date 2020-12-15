@@ -9,3 +9,5 @@ git push --set-upstream origin testing
 git checkout master
 git merge testing
 git push
+# back to dev
+git checkout dev

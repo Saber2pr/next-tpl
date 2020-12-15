@@ -10,7 +10,8 @@
     "start": "next start -p 8080",
     "start:local": "cross-env NODE_ENV=development next start -p 8088",
     "reset:branch": "sh scripts/reset-branch.sh",
-    "push": "sh scripts/push.sh"
+    "push": "sh scripts/push.sh",
+    "tag": "sh scripts/tag.sh"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",

@@ -3,6 +3,9 @@ import { ApiConfig } from './apiConfig'
 
 export const ApiUrls = {
   utils_proxy: '/utils/proxy',
+
+  // 钉钉
+  dingtalkSendMessage: '/dingtalk/sendMessage',
 }
 
 export const resolveApiUrl = (apiUrl: string, params: object) =>

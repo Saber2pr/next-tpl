@@ -1,4 +1,5 @@
 import getConfig from 'next/config'
+import { isProd } from '.'
 
 import { testLog } from './utils'
 
@@ -43,5 +44,10 @@ export const ApiConfig = {
   timeout: 1000 * 60,
   // 后缀带 /
   static: 'cdn.com/',
+
+  dingtalk: 'https://oapi.dingtalk.com/robot/send?access_token=xx',
+  dingtalkKey: 'dingtalkKey',
+  blockDingtalk: !isProd(),
+
   ...apis,
 } as const

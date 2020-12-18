@@ -15,10 +15,24 @@ import { Provider } from 'react-redux'
 
 import { ApiConfig, requestApi } from '../api'
 import { useRouterChange } from '../hooks'
+import { useUserDingtalkFn } from '../hooks/useUserDingtalk'
 import { useStore } from '../store'
 import { printLogo, registerAnalyticsGoogle } from '../utils'
 
 const ComponentWrapper = ({ Component, pageProps }: AppProps) => {
+  const send = useUserDingtalkFn()
+
+  useRouterChange(
+    {
+      start: () => NProgress.start(),
+      end: () => {
+        NProgress.done()
+        send(`正在浏览页面->${document.title}`)
+      },
+      error: () => NProgress.done(),
+    },
+    [send]
+  )
   return <Component {...pageProps} />
 }
 
@@ -39,15 +53,6 @@ export default function App(AppProps: AppProps) {
       })
     }
   }, [])
-
-  useRouterChange(
-    {
-      start: () => NProgress.start(),
-      end: () => NProgress.done(),
-      error: () => NProgress.done(),
-    },
-    []
-  )
 
   return (
     <Provider store={store}>

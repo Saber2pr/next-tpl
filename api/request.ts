@@ -91,4 +91,16 @@ const createRequestRoot = (headers?: OutgoingHttpHeaders) => {
   return requestRoot
 }
 
-export { requestApi, createRequestRoot }
+const createPureRequest = (config?: AxiosRequestConfig) => {
+  const request = axios.create(config)
+
+  request.interceptors.request.use(calcRequestTimeStart)
+  request.interceptors.request.use(rewriteApiUrl)
+
+  request.interceptors.response.use(calcRequestTimeEnd)
+  request.interceptors.response.use(printResUrlTime)
+
+  return request
+}
+
+export { requestApi, createRequestRoot, createPureRequest }

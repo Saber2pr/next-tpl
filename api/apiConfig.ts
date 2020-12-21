@@ -1,7 +1,6 @@
 import getConfig from 'next/config'
-import { isProd } from '.'
 
-import { testLog } from './utils'
+import { testLog, isProd } from './utils'
 
 const { publicRuntimeConfig } = getConfig()
 

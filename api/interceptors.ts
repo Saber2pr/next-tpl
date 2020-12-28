@@ -39,7 +39,7 @@ export const printResUrlTime: ResOnFulfilledInterceptor = res => {
       let optionalParams = [decodeURIComponent(reqUrl)]
       if (duration) {
         optionalParams = optionalParams.concat(`[duration]: ${duration}ms`)
-        setMetadata(res.data, 'duration', duration)
+        setMetadata(res, 'duration', duration)
       }
       console.log(...optionalParams)
     }

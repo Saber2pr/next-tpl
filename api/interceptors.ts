@@ -13,6 +13,7 @@ import type {
   ResOnFulfilledInterceptor,
 } from './type'
 import { ptbk } from '../utils/ptbk'
+import { getNowMon } from '../utils/date'
 /**
  * 输出调试信息
  */
@@ -36,7 +37,7 @@ export const printResUrlTime: ResOnFulfilledInterceptor = res => {
       }
 
       const duration = getMetadata(res, 'duration')
-      let optionalParams = [decodeURIComponent(reqUrl)]
+      let optionalParams = [getNowMon().format('YYYY-MM-DD HH:mm:ss'), reqUrl]
       if (duration) {
         optionalParams = optionalParams.concat(`[duration]: ${duration}ms`)
         setMetadata(res, 'duration', duration)

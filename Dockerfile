@@ -1,5 +1,5 @@
 # node
-FROM node:14.5.0-alpine3.10
+FROM node:15.5.1-alpine3.10
 
 # mirror
 RUN echo 'http://mirrors.aliyun.com/alpine/v3.5/main' > /etc/apk/repositories
@@ -14,9 +14,9 @@ WORKDIR /app
 COPY . /app
 
 # npm
-RUN npm config set registry 'https://registry.npm.taobao.org'
-RUN npm i
-RUN npm run build
+RUN yarn config set registry 'https://registry.npm.taobao.org'
+RUN yarn install
+RUN yarn build
 
 # script
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]

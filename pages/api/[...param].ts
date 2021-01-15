@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { createRequestRoot, getOrigin } from '../../api'
-import { createError } from '../../utils'
+import { getOrigin } from '../../api/utils'
+import { createRequestRoot } from '../../api/request'
+import { createError } from '../../utils/createError'
 import { KEYS } from '../../utils/constants'
 import { ptbk } from '../../utils/ptbk'
 

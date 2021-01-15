@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
-import { getHost } from '../utils'
+import { getHost } from '../utils/url'
 import { ApiConfig } from './apiConfig'
 import {
   calcRequestTimeEnd,

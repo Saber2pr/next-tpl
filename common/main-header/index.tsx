@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-import { Link } from '../../components'
+import { Link } from '../../components/link'
 
 export interface MainHeader {}
 

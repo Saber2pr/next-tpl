@@ -13,11 +13,13 @@ import NProgress from 'nprogress'
 import { useEffect } from 'react'
 import { Provider } from 'react-redux'
 
-import { ApiConfig, requestApi } from '../api'
-import { useRouterChange } from '../hooks'
+import { ApiConfig } from '../api/apiConfig'
+import { requestApi } from '../api/request'
+import { useRouterChange } from '../hooks/useRouterChange'
 import { useUserDingtalkFn } from '../hooks/useUserDingtalk'
 import { useStore } from '../store'
-import { printLogo, registerAnalyticsGoogle } from '../utils'
+import { printLogo } from '../utils/console'
+import { registerAnalyticsGoogle } from '../utils/analytics-google'
 
 const ComponentWrapper = ({ Component, pageProps }: AppProps) => {
   const send = useUserDingtalkFn()

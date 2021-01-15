@@ -2,8 +2,8 @@ import { GetServerSidePropsResult } from 'next'
 
 import createAxiosMonad from '@saber2pr/next-with-axios'
 
-import { createRequestRoot } from '../api'
-import { createError } from '../utils'
+import { createRequestRoot } from '../api/request'
+import { createError } from '../utils/createError'
 import { KEYS } from '../utils/constants'
 import { withRedirect } from './withRedirect'
 import { ptbk } from '../utils/ptbk'

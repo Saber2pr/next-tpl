@@ -1,4 +1,4 @@
-import { ApiConfig } from '../api'
+import { ApiConfig } from '../api/apiConfig'
 
 export const resolveImgSrc = (src: string, cdn = false) => {
   if (cdn) {

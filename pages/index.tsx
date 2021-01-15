@@ -3,9 +3,11 @@ import './style.less'
 import { Select } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { MainLayout, MainLayoutAdmin } from '../common'
-import { IndexText } from '../modules/index'
-import { withAxios, withPage } from '../plugin'
+import { MainLayout } from '../common/main-layout'
+import { MainLayoutAdmin } from '../common/main-layout-admin'
+import { IndexText } from '../modules/index/index-text'
+import { withPage } from '../plugin/withPage'
+import { withAxios } from '../plugin/withAxios'
 import { IAction, IState } from '../store'
 
 type Props = {}

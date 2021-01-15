@@ -7,10 +7,10 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-import { Link } from '../../components'
+import { Link } from '../../components/link'
 import { pushGoTop } from '../../utils/goTop'
 import { Menus } from './menus'
-import { useRestoreSiderScroll } from '../../hooks'
+import { useRestoreSiderScroll } from '../../hooks/useRestoreSiderScroll'
 
 const { Sider, Content, Header } = Layout
 const SIDER_WIDTH = 260

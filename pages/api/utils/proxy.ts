@@ -2,8 +2,9 @@ import axios from 'axios'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { parse } from 'url'
 
-import { getOrigin } from '../../../api'
-import { createError, KEYS } from '../../../utils'
+import { getOrigin } from '../../../api/utils'
+import { createError } from '../../../utils/createError'
+import { KEYS } from '../../../utils/constants'
 
 export const config = {
   api: {

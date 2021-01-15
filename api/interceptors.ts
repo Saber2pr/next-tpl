@@ -1,6 +1,6 @@
 import { ApiError } from 'next/dist/next-server/server/api-utils'
 
-import { getHost } from '../utils'
+import { getHost } from '../utils/url'
 import { KEYS } from '../utils/constants'
 import { createError, unWrapError } from '../utils/createError'
 import { Messager } from '../utils/message'

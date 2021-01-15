@@ -2,8 +2,10 @@ import './style.less'
 
 import { useSelector } from 'react-redux'
 
-import { MainLayout, MainLayoutAdmin } from '../../common'
-import { withAxios, withPage } from '../../plugin'
+import { MainLayout } from '../../common/main-layout'
+import { MainLayoutAdmin } from '../../common/main-layout-admin'
+import { withAxios } from '../../plugin/withAxios'
+import { withPage } from '../../plugin/withPage'
 import { IState } from '../../store'
 
 type Props = {}

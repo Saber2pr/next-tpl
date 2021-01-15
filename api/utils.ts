@@ -1,6 +1,6 @@
 import getConfig from 'next/config'
 
-import { LS_KEY } from '../utils'
+import { LS_KEY } from '../utils/constants'
 import { isBrowser } from '../utils/is'
 import { ApiConfig } from './apiConfig'
 

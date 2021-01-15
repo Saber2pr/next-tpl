@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios'
 
-import { ApiError } from '../api'
+import { ApiError } from '../api/type'
 import { KEYS } from './constants'
 
 export const createError = (error: any) => {

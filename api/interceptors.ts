@@ -124,7 +124,7 @@ export const changeOrigin: ReqOnFulfilledInterceptor = req => {
  * axios异常全局处理（服务端渲染）
  */
 export const handleError = (error: any) => {
-  console.log('[error]:', error?.request?.res?.responseUrl ?? String(error))
+  console.log('[error]:', error?.message, error?.request?.res?.responseUrl)
   return {
     data: {
       [KEYS.error]: createError(error),

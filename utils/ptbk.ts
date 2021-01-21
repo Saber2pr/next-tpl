@@ -1,7 +1,9 @@
 import Ptbk from '@saber2pr/ptbk'
 
+import { ApiConfig } from '../api/apiConfig'
+
 // 如果被破解，请更改以下加密方法
-export const ptbk = Ptbk.create(
+const ptbk = Ptbk.create(
   ([pri, pub]) => {
     return pri + pub
   },
@@ -10,3 +12,7 @@ export const ptbk = Ptbk.create(
     return [ptbk.slice(0, m), ptbk.slice(m)]
   }
 )
+
+ptbk.setEnable(ApiConfig.enablePtbk)
+
+export { ptbk }

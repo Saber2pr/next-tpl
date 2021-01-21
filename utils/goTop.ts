@@ -38,3 +38,16 @@ export const goElementTop = (elem: HTMLElement, cb?: Function) => {
 export const pushGoTop = (url: string) => {
   Router.push(url).then(() => goTopQuick())
 }
+
+export const pushReplace = async (url: string, cb?: Function) => {
+  Router.replace(url).then(() => {
+    cb && cb()
+  })
+}
+
+export const pushReplaceTop = async (url: string, cb?: Function) => {
+  pushReplace(url, () => {
+    goTopQuick()
+    cb && cb()
+  })
+}

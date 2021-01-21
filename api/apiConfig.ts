@@ -1,6 +1,6 @@
 import getConfig from 'next/config'
 
-import { testLog, isProd } from './utils'
+import { isProd, testLog } from './utils'
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -47,6 +47,11 @@ export const ApiConfig = {
   dingtalk: 'https://oapi.dingtalk.com/robot/send?access_token=xx',
   dingtalkKey: 'dingtalkKey',
   blockDingtalk: !isProd(),
+
+  /**
+   * 启用接口加密
+   */
+  enablePtbk: false,
 
   ...apis,
 } as const

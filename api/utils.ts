@@ -55,10 +55,10 @@ export const setMetadata = (resOrReq: any, key: string, value: any) => {
  */
 export const getOrigin = () => {
   if (isDev()) {
-    return 'localhost:8080'
+    return '*'
   }
   if (isTest()) {
-    return '192.168.1.1'
+    return '*'
   }
   if (isProd()) {
     return '*.xxx.com'

@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 
 import { Dingtalk } from '../api/dingtalk'
 
@@ -19,11 +19,4 @@ export const useUserDingtalkFn = () => {
     [user]
   )
   return send
-}
-
-export const useUserDingtalk = (message: string) => {
-  const send = useUserDingtalkFn()
-  useEffect(() => {
-    send(message)
-  }, [message])
 }

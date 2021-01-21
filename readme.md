@@ -130,3 +130,13 @@ sh /home/saber2pr/next-tpl/scripts/build.sh testing
 # vscode 设置
 
 1. 文件>首选项>设置>搜索 terminal.integrated.shell.windows，替换为 git:bash 的绝对路径。
+
+# 项目前必读
+
+[ssr 项目架构注意与优化](https://saber2pr.top/#/blog/Nextjs%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93/ssr%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E6%B3%A8%E6%84%8F%E4%B8%8E%E4%BC%98%E5%8C%96)
+
+[Nextjs 首屏渲染速度优化](https://saber2pr.top/#/blog/Nextjs%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93/Nextjs%E9%A6%96%E5%B1%8F%E6%B8%B2%E6%9F%93%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96)
+
+[学习 antd 组件设计](https://saber2pr.top/#/blog/Ant-Design%E7%BB%84%E4%BB%B6/%E5%AD%A6%E4%B9%A0antd%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1)
+
+[react16 以后不需要的一些操作](https://saber2pr.top/#/blog/React%E7%94%9F%E6%80%81/react16%E4%BB%A5%E5%90%8E%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9A%84%E4%B8%80%E4%BA%9B%E6%93%8D%E4%BD%9C)

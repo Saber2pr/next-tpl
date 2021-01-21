@@ -1,5 +1,3 @@
-import { ApiError } from 'next/dist/next-server/server/api-utils'
-
 import { getHost } from '../utils/url'
 import { KEYS } from '../utils/constants'
 import { createError, unWrapError } from '../utils/createError'
@@ -9,6 +7,7 @@ import { ApiConfig } from './apiConfig'
 import { getMetadata, rewriteUrl, setMetadata } from './utils'
 
 import type {
+  ApiError,
   ReqOnFulfilledInterceptor,
   ResOnFulfilledInterceptor,
 } from './type'

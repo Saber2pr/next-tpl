@@ -9,6 +9,7 @@ import '../styles/global.less'
 import '../styles/reset.less'
 
 import { AppProps } from 'next/app'
+import Head from 'next/head'
 import NProgress from 'nprogress'
 import { useEffect } from 'react'
 import { Provider } from 'react-redux'
@@ -18,8 +19,8 @@ import { requestApi } from '../api/request'
 import { useRouterChange } from '../hooks/useRouterChange'
 import { useUserDingtalkFn } from '../hooks/useUserDingtalk'
 import { useStore } from '../store'
-import { printLogo } from '../utils/console'
 import { registerAnalyticsGoogle } from '../utils/analytics-google'
+import { printLogo } from '../utils/console'
 
 const ComponentWrapper = ({ Component, pageProps }: AppProps) => {
   const send = useUserDingtalkFn()
@@ -58,6 +59,10 @@ export default function App(AppProps: AppProps) {
 
   return (
     <Provider store={store}>
+      <Head>
+        <link rel="dns-prefetch" href="//cdn.xxx.com" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge, chrome=1" />
+      </Head>
       <ComponentWrapper {...AppProps} />
     </Provider>
   )

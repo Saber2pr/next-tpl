@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { getOrigin } from '../../api/utils'
 import { getHeaderAuth } from '../../api/getToken'
+import { getOrigin } from '../../api/utils'
 import { KEYS } from '../../utils/constants'
 import { createError } from '../../utils/createError'
 import { ptbk } from '../../utils/ptbk'

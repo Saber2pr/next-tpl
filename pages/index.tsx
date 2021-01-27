@@ -5,10 +5,10 @@ import { requestApi } from '../api/request'
 import { MainLayout } from '../common/main-layout'
 import { useFetch } from '../hooks/useFetch'
 import { IndexText } from '../modules/index/index-text'
-import { ListView } from '../modules/index/list-view'
 import { withAxios } from '../plugin/withAxios'
 import { withPage } from '../plugin/withPage'
 import { KEYS } from '../utils/constants'
+import { ListView } from '../modules/index/list-view'
 
 type Props = {
   initList: number[]

@@ -30,7 +30,7 @@
     "cookie": "^0.4.1",
     "json-bigint": "^1.0.0",
     "moment": "^2.27.0",
-    "next": "^9.4.4",
+    "next": "^10.0.5",
     "nprogress": "^0.2.0",
     "popmotion": "^8.7.3",
     "react": "^16.13.1",

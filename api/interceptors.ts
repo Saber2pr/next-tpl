@@ -1,9 +1,12 @@
-import { getHost } from '../utils/url'
 import { KEYS } from '../utils/constants'
 import { createError, unWrapError } from '../utils/createError'
+import { getNowMon } from '../utils/date'
 import { Messager } from '../utils/message'
+import { ptbk } from '../utils/ptbk'
 import { toQueryStr } from '../utils/toQueryStr'
+import { getHost } from '../utils/url'
 import { ApiConfig } from './apiConfig'
+import { getToken } from './getToken'
 import { getMetadata, rewriteUrl, setMetadata } from './utils'
 
 import type {
@@ -11,8 +14,6 @@ import type {
   ReqOnFulfilledInterceptor,
   ResOnFulfilledInterceptor,
 } from './type'
-import { ptbk } from '../utils/ptbk'
-import { getNowMon } from '../utils/date'
 /**
  * 输出调试信息
  */
@@ -136,4 +137,33 @@ export const decodeApiPtbk: ResOnFulfilledInterceptor = res => {
     res.data = ptbk.decode(res?.data)
   }
   return res
+}
+
+/**
+ * 客户端自动携带token
+ */
+export const autoWithClientToken: ReqOnFulfilledInterceptor = req => {
+  const headers = req.headers
+  if (headers) {
+    const token = getToken()
+    if (token) {
+      headers[KEYS.authKey] = token
+    }
+  }
+  return req
+}
+
+/**
+ * 代理服务端如何发送token
+ */
+export const resolveServerToken: ReqOnFulfilledInterceptor = req => {
+  const headers = req.headers
+  if (headers) {
+    const token = headers[KEYS.authKey]
+    if (token) {
+      // 例如放到cookie中
+      // 不处理就是auth header
+    }
+  }
+  return req
 }

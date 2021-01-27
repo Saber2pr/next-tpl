@@ -64,18 +64,3 @@ export const getOrigin = () => {
     return '*.xxx.com'
   }
 }
-
-/**
- * 如果登录时使用set-cookie，设置domain时注意
- */
-export const getDomain = () => {
-  if (isDev()) {
-    return 'localhost'
-  }
-  if (isTest()) {
-    return '192.168.1.1'
-  }
-  if (isProd()) {
-    return '.xxx.com'
-  }
-}

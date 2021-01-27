@@ -8,6 +8,7 @@ type APIS = {
   target: string
 }
 
+// api地址结尾不要带'/'
 const apis: APIS = {
   development: {
     target: 'http://192.168.1.1',
@@ -30,11 +31,11 @@ export const ApiConfig = {
    */
   changeOrigin: true,
   /**
-   * node代理
+   * node代理。next规定为/api
    */
   proxyApi: '/api',
   /**
-   * origin侧是否为^/api代理
+   * origin侧是否为^/api代理.用来连接自己线上的代理
    */
   useProxyOrigin: /xxx\.xxx\.xxx/.test(apis.target),
   /**

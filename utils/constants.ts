@@ -12,4 +12,5 @@ export const LS_KEY = {
 export const KEYS = {
   error: '$error',
   token: 'token',
+  authKey: 'Authorization',
 } as const

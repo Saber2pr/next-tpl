@@ -1,16 +1,17 @@
-import { Menus } from '../common/main-layout-admin/menus'
+import { User } from '../api/interface'
 
 export type IState = Readonly<{
-  layout: 'col' | 'row'
   /**
-   * 侧边栏scroll
+   * 用户登录信息
    */
-  siderScroll: number
-  siderOpenKeys: string[]
+  userInfo: User
+  /**
+   * 展示loading
+   */
+  showLoading: boolean
 }>
 
 export const initState: IState = {
-  layout: 'row',
-  siderScroll: 0,
-  siderOpenKeys: Menus.map(item => item?.href),
+  userInfo: null,
+  showLoading: false,
 }

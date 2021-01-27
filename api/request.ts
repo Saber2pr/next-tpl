@@ -3,6 +3,7 @@ import axios, { AxiosRequestConfig } from 'axios'
 import { getHost } from '../utils/url'
 import { ApiConfig } from './apiConfig'
 import {
+  autoWithClientToken,
   calcRequestTimeEnd,
   calcRequestTimeStart,
   decodeApiPtbk,
@@ -15,11 +16,10 @@ import {
 } from './interceptors'
 
 const JSONbigString = require('json-bigint')({ storeAsString: true })
-
 import type { OutgoingHttpHeaders } from 'http'
-const HTMLTAG = /^\</
 
 // nextjs不支持BigInt,需要这里转换为string
+const HTMLTAG = /^\</
 axios.defaults.transformResponse = [
   text => {
     // java报错会返回html
@@ -43,17 +43,24 @@ const requestApiConfig: AxiosRequestConfig = {
 
 const requestApi = axios.create(requestApiConfig)
 
+// 自动携带token
+requestApi.interceptors.request.use(autoWithClientToken)
 // 开始计算请求时间
 requestApi.interceptors.request.use(calcRequestTimeStart)
 
 // 结束计算请求时间
 requestApi.interceptors.response.use(calcRequestTimeEnd)
+// api解密
 requestApi.interceptors.response.use(decodeApiPtbk)
 // 打印请求url
 requestApi.interceptors.response.use(printResUrlTime)
 // 打印返回值信息
 requestApi.interceptors.response.use(printResData)
-requestApi.interceptors.response.use(setClientErrorMessage)
+// 提示错误
+requestApi.interceptors.response.use(
+  setClientErrorMessage,
+  setClientErrorMessage
+)
 // 抛出被服务端吞掉的错误
 requestApi.interceptors.response.use(reThrowError)
 
@@ -66,7 +73,6 @@ const createRequestRoot = (headers?: OutgoingHttpHeaders) => {
   let baseURL = ApiConfig.target
   if (ApiConfig.changeOrigin) {
     headers.host = getHost(ApiConfig.target)
-    baseURL = baseURL.replace(/\/$/, '')
     if (ApiConfig.useProxyOrigin) {
       baseURL += ApiConfig.proxyApi
     }
@@ -82,9 +88,10 @@ const createRequestRoot = (headers?: OutgoingHttpHeaders) => {
   // 开始计算请求时间
   requestRoot.interceptors.request.use(calcRequestTimeStart)
 
-  requestRoot.interceptors.response.use(decodeApiPtbk)
   // 结束计算请求时间
   requestRoot.interceptors.response.use(calcRequestTimeEnd)
+  // api解密
+  requestRoot.interceptors.response.use(decodeApiPtbk)
   // 打印请求url， 捕获异常
   requestRoot.interceptors.response.use(printResUrlTime, handleError)
 
@@ -98,7 +105,7 @@ const createPureRequest = (config?: AxiosRequestConfig) => {
   request.interceptors.request.use(rewriteApiUrl)
 
   request.interceptors.response.use(calcRequestTimeEnd)
-  request.interceptors.response.use(printResUrlTime)
+  request.interceptors.response.use(printResUrlTime, handleError)
 
   return request
 }

@@ -2,6 +2,15 @@ import { useEffect, useState } from 'react'
 
 import { InputHistory } from '../utils/input-history'
 
+/**
+ * 输入记录
+ * ```ts
+ * // 示例
+ * const [searchList, setSearchList] = useInputHistory('search_user')
+ * ```
+ * @param key
+ * @param defaultList
+ */
 export const useInputHistory = (
   key: string,
   defaultList = []

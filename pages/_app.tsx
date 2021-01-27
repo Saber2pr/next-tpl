@@ -8,6 +8,7 @@ import '../styles/utils.less'
 import '../styles/global.less'
 import '../styles/reset.less'
 
+import { Spin } from 'antd'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import NProgress from 'nprogress'
@@ -17,13 +18,14 @@ import { Provider } from 'react-redux'
 import { ApiConfig } from '../api/apiConfig'
 import { requestApi } from '../api/request'
 import { useRouterChange } from '../hooks/useRouterChange'
+import { useSelectState } from '../hooks/useSelectState'
 import { useUserDingtalkFn } from '../hooks/useUserDingtalk'
 import { useStore } from '../store'
-import { registerAnalyticsGoogle } from '../utils/analytics-google'
 import { printLogo } from '../utils/console'
 
 const ComponentWrapper = ({ Component, pageProps }: AppProps) => {
   const send = useUserDingtalkFn()
+  const showLoading = useSelectState('showLoading')
 
   useRouterChange(
     {
@@ -36,24 +38,32 @@ const ComponentWrapper = ({ Component, pageProps }: AppProps) => {
     },
     [send]
   )
-  return <Component {...pageProps} />
+  return (
+    <Spin spinning={showLoading} delay={500}>
+      <Component {...pageProps} />
+    </Spin>
+  )
 }
 
 export default function App(AppProps: AppProps) {
   const store = useStore(AppProps?.pageProps?.initialReduxState)
 
   useEffect(() => {
-    registerAnalyticsGoogle()
+    // registerAnalyticsGoogle('UA-XXX')
     printLogo()
+
+    NProgress.configure({
+      minimum: 0.08,
+      easing: 'linear',
+      speed: 200,
+      trickleSpeed: 200,
+    })
 
     if (ApiConfig.log) {
       window['__store'] = store
       window['__config'] = ApiConfig
       window['__requestApi'] = requestApi
-
-      return store.subscribe(() => {
-        console.log('[store]', store.getState())
-      })
+      window['__NProgress'] = NProgress
     }
   }, [])
 
@@ -61,7 +71,9 @@ export default function App(AppProps: AppProps) {
     <Provider store={store}>
       <Head>
         <link rel="dns-prefetch" href="//cdn.xxx.com" />
-        <meta http-equiv="x-ua-compatible" content="ie=edge, chrome=1" />
+        <meta httpEquiv="x-ua-compatible" content="ie=edge, chrome=1" />
+        {/* <link rel="icon" href="favicon.svg" type="image/x-icon" /> */}
+        {/* <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXX" ></script> */}
       </Head>
       <ComponentWrapper {...AppProps} />
     </Provider>

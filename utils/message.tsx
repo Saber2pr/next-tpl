@@ -1,8 +1,8 @@
 import Button from 'antd/lib/button'
 import Message from 'antd/lib/message'
 
-import { ApiError } from '../api/type'
 import { ApiConfig } from '../api/apiConfig'
+import { ApiError } from '../api/type'
 
 export const Messager = {
   error(error: ApiError) {

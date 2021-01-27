@@ -6,20 +6,24 @@ const { publicRuntimeConfig } = getConfig()
 
 type APIS = {
   target: string
+  allowOrigin: string
 }
 
 // api地址结尾不要带'/'
-const apis: APIS = {
+const apis = ({
   development: {
     target: 'http://192.168.1.1',
+    allowOrigin: '*',
   },
   production: {
     target: 'xxx.xxx.xxx',
+    allowOrigin: '*.xxx.xxx',
   },
   testing: {
     target: 'xxx.xxx.xxx',
+    allowOrigin: '*',
   },
-}[publicRuntimeConfig.env.NODE_ENV]
+} as Record<string, APIS>)[publicRuntimeConfig.env.NODE_ENV]
 
 export const ApiConfig = {
   /**
@@ -45,6 +49,7 @@ export const ApiConfig = {
   // cdn
   static: 'cdn.xxx.com',
 
+  // 钉钉api
   dingtalk: 'https://oapi.dingtalk.com/robot/send?access_token=xx',
   dingtalkKey: 'dingtalkKey',
   blockDingtalk: !isProd(),

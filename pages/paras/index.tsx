@@ -1,14 +1,12 @@
 import './style.less'
 
 import { MainLayout } from '../../common/main-layout'
-import { withAxios } from '../../plugin/withAxios'
 import { withPage } from '../../plugin/withPage'
+import { disableAutomaticStaticOptimization } from '../../utils/next'
 
 type Props = {}
 
-export const getServerSideProps = withAxios<Props>(async ({ get }, ctx) => {
-  return {}
-})
+export const getServerSideProps = disableAutomaticStaticOptimization
 
 export default withPage<Props>(props => {
   return (

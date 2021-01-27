@@ -8,7 +8,6 @@ import '../styles/utils.less'
 import '../styles/global.less'
 import '../styles/reset.less'
 
-import { Spin } from 'antd'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import NProgress from 'nprogress'
@@ -18,14 +17,12 @@ import { Provider } from 'react-redux'
 import { ApiConfig } from '../api/apiConfig'
 import { requestApi } from '../api/request'
 import { useRouterChange } from '../hooks/useRouterChange'
-import { useSelectState } from '../hooks/useSelectState'
 import { useUserDingtalkFn } from '../hooks/useUserDingtalk'
 import { useStore } from '../store'
 import { printLogo } from '../utils/console'
 
 const ComponentWrapper = ({ Component, pageProps }: AppProps) => {
   const send = useUserDingtalkFn()
-  const showLoading = useSelectState('showLoading')
 
   useRouterChange(
     {
@@ -38,11 +35,7 @@ const ComponentWrapper = ({ Component, pageProps }: AppProps) => {
     },
     [send]
   )
-  return (
-    <Spin spinning={showLoading} delay={500}>
-      <Component {...pageProps} />
-    </Spin>
-  )
+  return <Component {...pageProps} />
 }
 
 export default function App(AppProps: AppProps) {

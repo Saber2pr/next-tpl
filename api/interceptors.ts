@@ -6,7 +6,7 @@ import { ptbk } from '../utils/ptbk'
 import { toQueryStr } from '../utils/toQueryStr'
 import { getHost } from '../utils/url'
 import { ApiConfig } from './apiConfig'
-import { getToken } from './getToken'
+import { getHeaderAuth, getToken, setHeaderAuth } from './getToken'
 import { getMetadata, rewriteUrl, setMetadata } from './utils'
 
 import type {
@@ -147,7 +147,7 @@ export const autoWithClientToken: ReqOnFulfilledInterceptor = req => {
   if (headers) {
     const token = getToken()
     if (token) {
-      headers[KEYS.authKey] = token
+      setHeaderAuth(headers, token)
     }
   }
   return req
@@ -159,7 +159,7 @@ export const autoWithClientToken: ReqOnFulfilledInterceptor = req => {
 export const resolveServerToken: ReqOnFulfilledInterceptor = req => {
   const headers = req.headers
   if (headers) {
-    const token = headers[KEYS.authKey]
+    const token = getHeaderAuth(headers)
     if (token) {
       // 例如放到cookie中
       // 不处理就是auth header

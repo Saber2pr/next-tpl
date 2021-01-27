@@ -53,14 +53,4 @@ export const setMetadata = (resOrReq: any, key: string, value: any) => {
 /**
  * cors
  */
-export const getOrigin = () => {
-  if (isDev()) {
-    return '*'
-  }
-  if (isTest()) {
-    return '*'
-  }
-  if (isProd()) {
-    return '*.xxx.com'
-  }
-}
+export const getOrigin = () => ApiConfig.allowOrigin

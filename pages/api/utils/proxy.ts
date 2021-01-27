@@ -3,8 +3,8 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { parse } from 'url'
 
 import { getOrigin } from '../../../api/utils'
-import { createError } from '../../../utils/createError'
 import { KEYS } from '../../../utils/constants'
+import { createError } from '../../../utils/createError'
 
 export const config = {
   api: {

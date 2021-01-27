@@ -42,8 +42,8 @@ export const ApiConfig = {
    * 接口超时时间
    */
   timeout: 1000 * 60,
-  // 后缀带 /
-  static: 'cdn.com/',
+  // cdn
+  static: 'cdn.xxx.com',
 
   dingtalk: 'https://oapi.dingtalk.com/robot/send?access_token=xx',
   dingtalkKey: 'dingtalkKey',

@@ -2,6 +2,8 @@
 
 开箱即用的 nextjs 模板，集成 antd 按需加载、集成 axios 接口、集成 react-redux、集成 docker。
 
+> 企业版包含部分授权业务代码未开源
+
 # docker
 
 ```bash

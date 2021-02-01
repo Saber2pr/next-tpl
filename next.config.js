@@ -15,9 +15,9 @@ const config = {
     importLoaders: 1,
     // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
     modifyVars: {
-      'primary-color': '#673ae2',
-      'border-color-base': '#673ae27a',
-      'box-shadow-base': '0 0 0 2px rgba(230, 130, 255, 0.2)',
+      '@primary-color': '#673ae2',
+      '@border-color-base': '#673ae27a',
+      '@box-shadow-base': '0 0 0 2px rgba(230, 130, 255, 0.2)',
     },
   },
   webpack: config => {

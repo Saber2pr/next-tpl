@@ -1,13 +1,17 @@
 const withCss = require('@zeit/next-css')
-const withPluginAntd = require('./next-plugin-antd')
-const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
-const isProd = process.env.NODE_ENV === 'production'
+const withLess = require('@zeit/next-less')
 const webpack = require('webpack')
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+
+const { NODE_ENV, API, ANALYZE } = process.env
+const isProd = NODE_ENV === 'production'
 
 const config = {
   publicRuntimeConfig: {
     env: {
-      NODE_ENV: process.env['NODE_ENV'],
+      NODE_ENV,
+      API,
     },
   },
   lessLoaderOptions: {
@@ -15,21 +19,46 @@ const config = {
     importLoaders: 1,
     // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
     modifyVars: {
-      '@primary-color': '#673ae2',
-      '@border-color-base': '#673ae27a',
-      '@box-shadow-base': '0 0 0 2px rgba(230, 130, 255, 0.2)',
+      '@primary-color': '#FF2442',
     },
   },
-  webpack: config => {
-    config.plugins.push(
+  webpack: (config, { isServer }) => {
+    // https://github.com/vercel/next.js/tree/canary/examples/with-ant-design-less
+    if (isServer) {
+      const antStyles = /antd\/.*?\/style.*?/
+      const origExternals = [...config.externals]
+      config.externals = [
+        (context, request, callback) => {
+          if (request.match(antStyles)) return callback()
+          if (typeof origExternals[0] === 'function') {
+            origExternals[0](context, request, callback)
+          } else {
+            callback()
+          }
+        },
+        ...(typeof origExternals[0] === 'function' ? [] : origExternals),
+      ]
+      config.module.rules.unshift({
+        test: antStyles,
+        use: 'null-loader',
+      })
+    }
+
+    // plugins
+    const plugins = [
       new FilterWarningsPlugin({
         exclude: /mini-css-extract-plugin[^]*Conflicting order between:/,
       }),
-      new webpack.IgnorePlugin(/\.\/locale/, /moment/)
-    )
+      new webpack.IgnorePlugin(/\.\/locale/, /moment/),
+    ]
+    if (ANALYZE) {
+      plugins.push(new BundleAnalyzerPlugin())
+    }
+    config.plugins.push(...plugins)
+
     return config
   },
   assetPrefix: isProd ? 'cdn' : '',
 }
 
-module.exports = withPluginAntd(withCss(config))
+module.exports = withLess(withCss(config))

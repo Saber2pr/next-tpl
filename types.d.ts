@@ -9,3 +9,30 @@ declare module 'scroll-doc' {
     clientHeight: number
   }
 }
+
+declare module 'next/config' {
+  export default getConfig as () => {
+    publicRuntimeConfig: Readonly<{
+      log: boolean
+      changeOrigin: boolean
+      proxyApi: string
+      useProxyOrigin: boolean
+      oauthApi: string
+      appId: number
+      timeout: number
+      target: string
+      static: string
+      oauth: string
+      publishTime: string
+      dingtalkKey: string
+      blockDingtalk: boolean
+      oauthWeb: string
+      env: 'development' | 'production' | 'testing'
+      allowOrigin: string
+      domain: string
+    }>
+    serverRuntimeConfig: Readonly<{
+      webhook_dingtalk: string
+    }>
+  }
+}

@@ -3,23 +3,20 @@ const withLess = require('@zeit/next-less')
 const webpack = require('webpack')
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const { publicRuntimeConfig, serverRuntimeConfig } = require('./config')
 
-const { NODE_ENV, API, ANALYZE } = process.env
+const { NODE_ENV, ANALYZE } = process.env
 const isProd = NODE_ENV === 'production'
 
 const config = {
-  publicRuntimeConfig: {
-    env: {
-      NODE_ENV,
-      API,
-    },
-  },
+  publicRuntimeConfig,
+  serverRuntimeConfig,
   lessLoaderOptions: {
     javascriptEnabled: true,
     importLoaders: 1,
     // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
     modifyVars: {
-      '@primary-color': '#FF2442',
+      '@primary-color': '#673ae2',
     },
   },
   webpack: (config, { isServer }) => {
@@ -58,7 +55,7 @@ const config = {
 
     return config
   },
-  assetPrefix: isProd ? 'cdn' : '',
+  assetPrefix: isProd ? publicRuntimeConfig.static : '',
 }
 
 module.exports = withLess(withCss(config))

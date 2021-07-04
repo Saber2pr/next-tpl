@@ -25,10 +25,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const headers = (req.headers ?? {}) as any
 
   headers.host = parse(url).host
-
   try {
     const apiRes = await axios({
-      url,
+      url: encodeURI(url),
       data: body,
       method: method,
       headers,
@@ -39,7 +38,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       'Access-Control-Allow-Origin': getOrigin(),
     })
 
-    res.end(JSON.stringify(apiRes.data))
+    const response = apiRes.data
+    res.end(
+      typeof response === 'object' ? JSON.stringify(apiRes.data) : response
+    )
   } catch (error) {
     res.end(JSON.stringify({ [KEYS.error]: createError(error) }))
   }

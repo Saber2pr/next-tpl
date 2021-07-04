@@ -63,7 +63,7 @@ export default function App(AppProps: AppProps) {
   return (
     <Provider store={store}>
       <Head>
-        <link rel="dns-prefetch" href="//cdn.xxx.com" />
+        {/* <link rel="dns-prefetch" href="//cdn.xxx.com" /> */}
         <meta httpEquiv="x-ua-compatible" content="ie=edge, chrome=1" />
         {/* <link rel="icon" href="favicon.svg" type="image/x-icon" /> */}
         {/* <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXX" ></script> */}

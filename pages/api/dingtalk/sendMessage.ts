@@ -1,10 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { ApiConfig } from '../../../api/apiConfig'
 import { createPureRequest } from '../../../api/request'
 import { KEYS } from '../../../utils/constants'
 import { createError } from '../../../utils/createError'
 import { ptbk } from '../../../utils/ptbk'
+import getConfig from 'next/config'
+
+const { webhook_dingtalk } = getConfig().serverRuntimeConfig
 
 export const config = {
   api: {
@@ -20,7 +22,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       baseURL: '',
     })
     const data = req.body.data
-    const apiRes = await request.post(ApiConfig.dingtalk, {
+    const apiRes = await request.post(webhook_dingtalk, {
       msgtype: 'text',
       text: ptbk.decode(data),
     })

@@ -55,6 +55,7 @@ const config = {
 
     return config
   },
+  // TODO copy docker/app assets to cdn
   assetPrefix: isProd ? publicRuntimeConfig.static : '',
 }
 

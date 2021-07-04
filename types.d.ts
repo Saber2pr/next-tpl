@@ -30,6 +30,7 @@ declare module 'next/config' {
       env: 'development' | 'production' | 'testing'
       allowOrigin: string
       domain: string
+      enablePtbk: boolean
     }>
     serverRuntimeConfig: Readonly<{
       webhook_dingtalk: string

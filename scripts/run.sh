@@ -1,6 +1,6 @@
 # CONFIG
 NAME="next-tpl";
-PORT=443;
+PORT=8080;
 
 docker stop ${NAME} \
 && docker rm ${NAME};
